@@ -14,7 +14,7 @@ if %errorLevel% neq 0 (
 :: ------------------------ Configuration ------------------------
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "local=%~f0"
-set "localVersion=25.10.1"
+set "localVersion=25.10.2"
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
 set "tmpVersion=%temp%\version.tmp"
@@ -60,6 +60,7 @@ set /a total+=1 & set "app[%total%]=[ ] Opera"        & set "id[%total%]=Opera.O
 set /a total+=1 & set "app[%total%]=[ ] OperaGX"      & set "id[%total%]=Opera.OperaGX"                & set "cat[%total%]=Navigateur"
 set /a total+=1 & set "app[%total%]=[ ] Edge"         & set "id[%total%]=Microsoft.Edge"               & set "cat[%total%]=Navigateur"
 set /a total+=1 & set "app[%total%]=[ ] Vivaldi"      & set "id[%total%]=Vivaldi.Vivaldi"              & set "cat[%total%]=Navigateur"
+set /a total+=1 & set "app[%total%]=[ ] Yandex"      & set "id[%total%]=Yandex.Browser"              & set "cat[%total%]=Navigateur"
 
 :: --- Communications ---
 set /a total+=1 & set "app[%total%]=[ ] Teams"        & set "id[%total%]=Microsoft.Teams"              & set "cat[%total%]=Communications"
@@ -78,10 +79,13 @@ set /a total+=1 & set "app[%total%]=[ ] VLC"          & set "id[%total%]=VideoLA
 set /a total+=1 & set "app[%total%]=[ ] Spotify"      & set "id[%total%]=Spotify.Spotify"              & set "cat[%total%]=Media"
 set /a total+=1 & set "app[%total%]=[ ] Deezer"       & set "id[%total%]=Deezer.Deezer"                & set "cat[%total%]=Media"
 set /a total+=1 & set "app[%total%]=[ ] OBSStudio"    & set "id[%total%]=OBSProject.OBSStudio"         & set "cat[%total%]=Media"
+set /a total+=1 & set "app[%total%]=[ ] Elgato StreamDeck"    & set "id[%total%]=Elgato.StreamDeck"         & set "cat[%total%]=Media"
 
 :: --- Documents ---
 set /a total+=1 & set "app[%total%]=[ ] LibreOffice"  & set "id[%total%]=TheDocumentFoundation.LibreOffice" & set "cat[%total%]=Documents"
 set /a total+=1 & set "app[%total%]=[ ] OnlyOffice"   & set "id[%total%]=ONLYOFFICE.DesktopEditors"    & set "cat[%total%]=Documents"
+set /a total+=1 & set "app[%total%]=[ ] Okular"   & set "id[%total%]=KDE.Okular"    & set "cat[%total%]=Documents"
+set /a total+=1 & set "app[%total%]=[ ] Adobe Creative Cloud"   & set "id[%total%]=Adobe.CreativeCloud"    & set "cat[%total%]=Documents"
 
 :: --- Jeux ---
 set /a total+=1 & set "app[%total%]=[ ] Steam"        & set "id[%total%]=Valve.Steam"                  & set "cat[%total%]=Jeux"
@@ -91,6 +95,7 @@ set /a total+=1 & set "app[%total%]=[ ] Ubisoft Connect" & set "id[%total%]=Ubis
 set /a total+=1 & set "app[%total%]=[ ] EA App"       & set "id[%total%]=ElectronicArts.EADesktop"     & set "cat[%total%]=Jeux"
 set /a total+=1 & set "app[%total%]=[ ] NVIDIA GEFORCE NOW" & set "id[%total%]=Nvidia.GeForceNow"       & set "cat[%total%]=Jeux"
 set /a total+=1 & set "app[%total%]=[ ] FACEIT Client" & set "id[%total%]=FACEITLTD.FACEITClient"      & set "cat[%total%]=Jeux"
+set /a total+=1 & set "app[%total%]=[ ] Bluestacks" & set "id[%total%]=Bluestack.Bluestacks"      & set "cat[%total%]=Jeux"
 
 :: --- Compression ---
 set /a total+=1 & set "app[%total%]=[ ] 7-Zip"        & set "id[%total%]=7zip.7zip"                    & set "cat[%total%]=Compression"
@@ -106,12 +111,18 @@ set /a total+=1 & set "app[%total%]=[ ] Nextcloud Client" & set "id[%total%]=Nex
 set /a total+=1 & set "app[%total%]=[ ] KeePassXC"    & set "id[%total%]=KeePassXCTeam.KeePassXC"      & set "cat[%total%]=Outils"
 set /a total+=1 & set "app[%total%]=[ ] Bitwarden"    & set "id[%total%]=Bitwarden.Bitwarden"          & set "cat[%total%]=Outils" 
 set /a total+=1 & set "app[%total%]=[ ] Nextcloud Password"    & set "id[%total%]=9NXVZ0ZP6D5Z"          & set "cat[%total%]=Outils"
+set /a total+=1 & set "app[%total%]=[ ] Rufus"    & set "id[%total%]=Rufus.Rufus"          & set "cat[%total%]=Outils"
+set /a total+=1 & set "app[%total%]=[ ] Itunes"    & set "id[%total%]=Apple.iTunes"          & set "cat[%total%]=Outils"
+set /a total+=1 & set "app[%total%]=[ ] Driver Store"    & set "id[%total%]=lostindark.DriverStoreExplorer"          & set "cat[%total%]=Outils"
 
 :: --- Developpement ---
 set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Developpement"
 set /a total+=1 & set "app[%total%]=[ ] WinSCP"       & set "id[%total%]=WinSCP.WinSCP"                & set "cat[%total%]=Developpement"
 set /a total+=1 & set "app[%total%]=[ ] Notepad++"    & set "id[%total%]=Notepad++.Notepad++"          & set "cat[%total%]=Developpement"
 set /a total+=1 & set "app[%total%]=[ ] Git"          & set "id[%total%]=Git.Git"                      & set "cat[%total%]=Developpement"
+
+:: --- Personnalisation ---
+set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%total%]=rocksdanister.LivelyWallpaper"             & set "cat[%total%]=Personnalisation"
 
 :: ------------------ Menu ------------------
 goto menu
@@ -236,5 +247,6 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
