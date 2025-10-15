@@ -12,6 +12,13 @@ if %errorLevel% neq 0 (
 )
 
 :: ------------------------ Configuration ------------------------
+:checkupdate
+cls
+echo ================================
+echo   Verification de mise a jour
+echo ================================
+echo.
+
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Downloadmanager.bat"
 set "local=%~f0"
 set "localVersion=25.10.3b"
@@ -179,11 +186,13 @@ echo.
 echo Tape le numero pour cocher/decocher.
 echo Tape I pour installer les applications selectionnees.
 echo Tape U pour desinstaller la selection.
+echo Tape C pour rechercher les mises a jours.
 echo Tape Q pour quitter.
 echo.
 set /p choix=Ton choix : 
 
 if /I "%choix%"=="Q" exit /b
+if /I "%choix%"=="C" goto checkupdate
 if /I "%choix%"=="I" goto install
 if /I "%choix%"=="U" goto uninstall
 
@@ -252,6 +261,7 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
 
