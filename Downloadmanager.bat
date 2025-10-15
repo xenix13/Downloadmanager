@@ -14,7 +14,7 @@ if %errorLevel% neq 0 (
 :: ------------------------ Configuration ------------------------
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "local=%~f0"
-set "localVersion=25.10.2a"
+set "localVersion=25.10.2b"
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
 set "tmpVersion=%temp%\version.tmp"
@@ -37,7 +37,6 @@ if exist "%local%.tmp" (
 			echo Script mis a jour avec succes !
 			echo Relance du script...
 			start "" "%local%"
-			pause
 			exit /b
 		) else (
 			del "%local%.tmp"
@@ -251,6 +250,7 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
 
