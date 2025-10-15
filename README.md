@@ -27,10 +27,10 @@ This type of tool can be crucial during deployments to streamline and optimize s
    * The script defines its version at the top:
 
      ```bat
-     set "version=1.0.0"
+     set "localversion=25.10.0"
      ```
-   * On launch, it downloads the latest version of itself from GitHub to a temporary file.
-   * It extracts the `version` variable from the downloaded file.
+   * On launch, it downloads the latest version of itself and "Version.txt" from GitHub to a temporary file.
+   * It extracts the `remoteVersion` variable from the downloaded file.
    * If `remoteVersion` ≠ `localVersion`, the script updates itself and restarts.
 
 2. **App Menu**
@@ -77,7 +77,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
 * Updates are pulled directly from the **GitHub raw file**:
 
   ```
-  https://raw.githubusercontent.com/<username>/<repo>/main/launcher.bat
+  **https://raw.githubusercontent.com/<username>/<repo>/main/launcher.bat**
   ```
 
 ---
