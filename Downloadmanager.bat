@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 title Selection d applications a installer
 color 1F
 :: ------------------------ Configuration ------------------------
-set "url=https://raw.githubusercontent.com/USERNAME/REPO/BRANCHE/mon_script.bat"
+set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "local=%~f0"  :: %~f0 = chemin complet du script en cours
 
 :: ------------------------ Téléchargement ------------------------
@@ -214,5 +214,6 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
