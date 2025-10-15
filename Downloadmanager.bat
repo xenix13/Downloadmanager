@@ -14,7 +14,7 @@ if %errorLevel% neq 0 (
 :: ------------------------ Configuration ------------------------
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "local=%~f0"
-set "localVersion=25.10.2"
+set "localVersion=25.10.2a"
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
 set "tmpVersion=%temp%\version.tmp"
@@ -25,7 +25,7 @@ del "%tmpVersion%"
 
 
 :: ------------------------ Téléchargement ------------------------
-echo Vérification de mise à jour...
+echo Check Updates...
 
 :: Si téléchargement réussi, demande validation
 if exist "%local%.tmp" (
@@ -34,20 +34,24 @@ if exist "%local%.tmp" (
 		set /p choice="Une mise a jour est disponible. La nouvelle version !remoteVersion! est disponible. Voulez-vous l installer ? (O/N) : "
 		if /I "!choice!"=="O" (
 			move /Y "%local%.tmp" "%local%"
-			echo Script mis à jour avec succès !
+			echo Script mis a jour avec succes !
 			echo Relance du script...
 			start "" "%local%"
+			pause
 			exit /b
 		) else (
 			del "%local%.tmp"
 			echo Mise à jour ignoree, lancement du script...
+			pause
 		)
 	) else (
 		echo Aucune mise a jour disponible.
 		del "%local%.tmp"
+		pause
 	)
 ) else (
-    echo Echec de la mise à jour, le script continue...
+    echo Echec de la mise à jour, lancement du script...
+	pause
 )
 
 :: ------------------ Initialisation des applications ------------------
@@ -247,6 +251,7 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
 
