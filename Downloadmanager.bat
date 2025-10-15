@@ -15,9 +15,6 @@ if %errorLevel% neq 0 (
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "local=%~f0"
 
-:: Récupération de la taille du fichier distant
-for /f %%S in ('powershell -NoProfile -Command "(Invoke-WebRequest -Uri '%url%' -UseBasicParsing).Headers['Content-Length']"') do set "remoteSize=%%S"
-for %%L in ("%local%") do set "localSize=%%~zL"
 
 :: ------------------------ Téléchargement ------------------------
 echo Vérification de mise à jour...
@@ -25,9 +22,9 @@ powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 
 :: Si téléchargement réussi, demande validation
 if exist "%local%.tmp" (
-	for %%L in ("%local%") do set "localSize=%%~zL"
-	for %%T in ("%local%.tmp") do set "tmpSize=%%~zT"
-	if not "!localSize!"=="!tmpSize!" (
+	for /f %%L in ('powershell -NoProfile -Command "Get-FileHash -Algorithm SHA256 '%local%' | Select-Object -ExpandProperty Hash"') do set "localHash=%%L"
+    for /f %%T in ('powershell -NoProfile -Command "Get-FileHash -Algorithm SHA256 '%tmpFile%' | Select-Object -ExpandProperty Hash"') do set "tmpHash=%%T"
+	if not "!localHash!"=="!tmpHash!" (
 		set /p choice="Une mise a jour est disponible. Voulez-vous l installer ? (O/N) : "
 		if /I "!choice!"=="O" (
 			move /Y "%local%.tmp" "%local%"
