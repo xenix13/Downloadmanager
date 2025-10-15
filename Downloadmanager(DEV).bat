@@ -27,7 +27,7 @@ set "tmpFile=%local%.tmp"
 
 :: Extraire la version du batch distant
 set "remoteVersion="
-for /f "tokens=2 delims== " %%A in ('findstr /B /C:"set ""localVersion=" "%tmpFile%"') do set "remoteVersion=%%~A"
+for /f "tokens=2 delims== " %%A in ('findstr /B /C:"set ""localVersion=" "%local%.tmp"') do set "remoteVersion=%%~A"
 
 if not defined remoteVersion (
     echo Impossible de lire la version distante, lancement du script local...
@@ -261,6 +261,7 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
 
