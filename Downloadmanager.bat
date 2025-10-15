@@ -2,7 +2,24 @@
 setlocal enabledelayedexpansion
 title Selection d applications a installer
 color 1F
+:: ------------------------ Configuration ------------------------
+set "url=https://raw.githubusercontent.com/USERNAME/REPO/BRANCHE/mon_script.bat"
+set "local=%~f0"  :: %~f0 = chemin complet du script en cours
 
+:: ------------------------ Téléchargement ------------------------
+echo Vérification de mise à jour...
+powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
+
+:: Si téléchargement réussi, écrase le script courant
+if exist "%local%.tmp" (
+    move /Y "%local%.tmp" "%local%"
+    echo Script mis à jour avec succès !
+    echo Relance du script...
+    start "" "%local%"
+    exit /b
+) else (
+    echo Echec de la mise à jour, le script continue...
+)
 :: ------------------ Auto-élévation ------------------
 net session >nul 2>&1
 if %errorLevel% neq 0 (
@@ -197,4 +214,5 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
