@@ -14,7 +14,12 @@ if %errorLevel% neq 0 (
 :: ------------------------ Configuration ------------------------
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "local=%~f0"
-
+set "localVersion=25.10.0"
+set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt"
+set "remoteVersion="
+powershell -NoProfile -Command "(Invoke-WebRequest -Uri '%versionUrl%' -UseBasicParsing).Content.Trim()" > "%temp%\ver.tmp"
+set /p remoteVersion=<"%temp%\ver.tmp"
+del "%temp%\ver.tmp"
 
 :: ------------------------ Téléchargement ------------------------
 echo Vérification de mise à jour...
@@ -22,10 +27,9 @@ powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 
 :: Si téléchargement réussi, demande validation
 if exist "%local%.tmp" (
-	for /f %%L in ('powershell -NoProfile -Command "Get-FileHash -Algorithm SHA256 '%local%' | Select-Object -ExpandProperty Hash"') do set "localHash=%%L"
-    for /f %%T in ('powershell -NoProfile -Command "Get-FileHash -Algorithm SHA256 '%tmpFile%' | Select-Object -ExpandProperty Hash"') do set "tmpHash=%%T"
-	if not "!localHash!"=="!tmpHash!" (
-		set /p choice="Une mise a jour est disponible. Voulez-vous l installer ? (O/N) : "
+	if not "!localVersion!"=="!remoteVersion!" (
+		echo Votre version : !localVersion!
+		set /p choice="Une mise a jour est disponible. La nouvelle version !remoteVersion! est disponible. Voulez-vous l installer ? (O/N) : "
 		if /I "!choice!"=="O" (
 			move /Y "%local%.tmp" "%local%"
 			echo Script mis à jour avec succès !
