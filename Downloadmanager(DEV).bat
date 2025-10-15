@@ -12,27 +12,17 @@ if %errorLevel% neq 0 (
 )
 
 :: ------------------------ Configuration ------------------------
-:checkupdate
-cls
-echo ================================
-echo   Verification de mise a jour
-echo ================================
-echo.
-
-set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Downloadmanager.bat"
+set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Downloadmanager(DEV).bat"
 set "local=%~f0"
-set "localVersion=25.10.3b"
+set "localVersion=25.10.2b"
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
-set "tmpFile=%local%.tmp"
-
-:: Extraire la version du batch distant
+set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Version.txt?t=%random%"
+set "tmpVersion=%temp%\version.tmp"
+powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
 set "remoteVersion="
-for /f "tokens=2 delims== " %%A in ('findstr /B /C:"set ""localVersion=" "%local%.tmp"') do set "remoteVersion=%%~A"
-set "remoteVersion=%remoteVersion:~1%"
+set /p remoteVersion=<"%tmpVersion%"
+del "%tmpVersion%"
 
-if not defined remoteVersion (
-    echo Impossible de lire la version distante, lancement du script local...
-    del "%tmpFile%" >nul 2>&1
 
 :: ------------------------ Téléchargement ------------------------
 echo Check Updates...
@@ -187,13 +177,11 @@ echo.
 echo Tape le numero pour cocher/decocher.
 echo Tape I pour installer les applications selectionnees.
 echo Tape U pour desinstaller la selection.
-echo Tape C pour rechercher les mises a jours.
 echo Tape Q pour quitter.
 echo.
 set /p choix=Ton choix : 
 
 if /I "%choix%"=="Q" exit /b
-if /I "%choix%"=="C" goto checkupdate
 if /I "%choix%"=="I" goto install
 if /I "%choix%"=="U" goto uninstall
 
@@ -262,13 +250,4 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
-
-
-
-
-
-
-
-
-
 
