@@ -60,7 +60,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
 
 ## 🚀 Usage
 
-1. Download the latest `launcher.bat` from the repository.
+1. Download the latest `Downloadmanager.bat` from the repository.
 2. Double-click the batch file.
 3. On startup:
 
