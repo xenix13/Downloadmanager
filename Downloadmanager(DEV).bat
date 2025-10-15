@@ -14,7 +14,7 @@ if %errorLevel% neq 0 (
 :: ------------------------ Configuration ------------------------
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Downloadmanager.bat"
 set "local=%~f0"
-set "localVersion=25.10.2b"
+set "localVersion=25.10.3b"
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 set "tmpFile=%local%.tmp"
 
@@ -252,6 +252,7 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
 
