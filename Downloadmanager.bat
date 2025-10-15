@@ -14,16 +14,18 @@ if %errorLevel% neq 0 (
 :: ------------------------ Configuration ------------------------
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "local=%~f0"
-set "localVersion=25.10.0"
-set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt"
+set "localVersion=25.10.1"
+powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
+set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
+set "tmpVersion=%temp%\version.tmp"
+powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
 set "remoteVersion="
-powershell -NoProfile -Command "(Invoke-WebRequest -Uri '%versionUrl%' -UseBasicParsing).Content.Trim()" > "%temp%\ver.tmp"
-set /p remoteVersion=<"%temp%\ver.tmp"
-del "%temp%\ver.tmp"
+set /p remoteVersion=<"%tmpVersion%"
+del "%tmpVersion%"
+
 
 :: ------------------------ Téléchargement ------------------------
 echo Vérification de mise à jour...
-powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 
 :: Si téléchargement réussi, demande validation
 if exist "%local%.tmp" (
