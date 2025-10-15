@@ -12,17 +12,19 @@ if %errorLevel% neq 0 (
 )
 
 :: ------------------------ Configuration ------------------------
-set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
+set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Downloadmanager.bat"
 set "local=%~f0"
 set "localVersion=25.10.2b"
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
-set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
-set "tmpVersion=%temp%\version.tmp"
-powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
-set "remoteVersion="
-set /p remoteVersion=<"%tmpVersion%"
-del "%tmpVersion%"
+set "tmpFile=%local%.tmp"
 
+:: Extraire la version du batch distant
+set "remoteVersion="
+for /f "tokens=2 delims== " %%A in ('findstr /B /C:"set ""localVersion=" "%tmpFile%"') do set "remoteVersion=%%~A"
+
+if not defined remoteVersion (
+    echo Impossible de lire la version distante, lancement du script local...
+    del "%tmpFile%" >nul 2>&1
 
 :: ------------------------ Téléchargement ------------------------
 echo Check Updates...
@@ -250,6 +252,7 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
+
 
 
 
