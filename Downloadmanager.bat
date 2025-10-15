@@ -2,30 +2,49 @@
 setlocal enabledelayedexpansion
 title Selection d applications a installer
 color 1F
-:: ------------------------ Configuration ------------------------
-set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
-set "local=%~f0"  :: %~f0 = chemin complet du script en cours
 
-:: ------------------------ Téléchargement ------------------------
-echo Vérification de mise à jour...
-powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
-
-:: Si téléchargement réussi, écrase le script courant
-if exist "%local%.tmp" (
-    move /Y "%local%.tmp" "%local%"
-    echo Script mis à jour avec succès !
-    echo Relance du script...
-    start "" "%local%"
-    exit /b
-) else (
-    echo Echec de la mise à jour, le script continue...
-)
 :: ------------------ Auto-élévation ------------------
 net session >nul 2>&1
 if %errorLevel% neq 0 (
     echo Demande de droits administrateur...
     powershell -Command "Start-Process '%~f0' -Verb runAs"
     exit /b
+)
+
+:: ------------------------ Configuration ------------------------
+set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
+set "local=%~f0"
+
+:: Récupération de la taille du fichier distant
+for /f %%S in ('powershell -NoProfile -Command "(Invoke-WebRequest -Uri '%url%' -UseBasicParsing).Headers['Content-Length']"') do set "remoteSize=%%S"
+for %%L in ("%local%") do set "localSize=%%~zL"
+
+:: ------------------------ Téléchargement ------------------------
+echo Vérification de mise à jour...
+powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
+
+:: Si téléchargement réussi, demande validation
+if exist "%local%.tmp" (
+	for %%L in ("%local%") do set "localSize=%%~zL"
+	for %%T in ("%local%.tmp") do set "tmpSize=%%~zT"
+	if not "!localSize!"=="!tmpSize!" (
+		set /p choice="Une mise a jour est disponible. Voulez-vous l installer ? (O/N) : "
+		if /I "!choice!"=="O" (
+			move /Y "%local%.tmp" "%local%"
+			echo Script mis à jour avec succès !
+			echo Relance du script...
+			start "" "%local%"
+			exit /b
+		) else (
+			del "%local%.tmp"
+			echo Mise à jour ignoree, lancement du script...
+		)
+	) else (
+		echo Aucune mise a jour disponible.
+		del "%local%.tmp"
+	)
+) else (
+    echo Echec de la mise à jour, le script continue...
 )
 
 :: ------------------ Initialisation des applications ------------------
@@ -214,6 +233,5 @@ echo Toutes les desinstallations sont terminees.
 echo Appuyez sur une touche pour revenir au menu...
 pause >nul
 goto menu
-
 
 
