@@ -25,14 +25,15 @@ echo.
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
 set "local=%~f0"
+set "newlocal=%temp%\Downloadmanager.tmp"
 set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.10.4"
+set "localVersion=25.10.41"
 
 :: Downloads Files 
-powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
+powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
 powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
 
 ::
@@ -48,27 +49,27 @@ del "%tmpVersion%"
 echo Check Version...
 
 :: If TEMP File exist try to update
-if exist "%local%.tmp" (
+if exist "%newlocal%" (
 	if not "!localVersion!"=="!remoteVersion!" (
 		echo Your Version : !localVersion!
 		set /p choice="A new update !remoteVersion! is available. Do you want to upgrade ? (Y/N) : "
 		if /I "!choice!"=="O" goto upgrade
 		if /I "!choice!"=="Y" (
 			:upgrade
-			move /Y "%local%.tmp" "%local%"
+			move /Y "%newlocal%" "%local%"
 			echo Upgrade Succesfull !
 			echo Reload Script...
-			pause
+			timeout /t 5 >nul
 			start "" "%local%"
 			exit /b
 		) else (
-			del "%local%.tmp"
+			del "%newlocal%"
 			echo Update ignored, Loading...
 			pause
 		)
 	) else (
 		echo None update is available.
-		del "%local%.tmp"
+		del "%newlocal%"
 		pause
 	)
 ) else (
@@ -277,6 +278,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
