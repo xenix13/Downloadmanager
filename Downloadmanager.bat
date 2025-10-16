@@ -59,7 +59,7 @@ if exist "%newlocal%" (
 			move /Y "%newlocal%" "%local%"
 			echo Upgrade Succesfull !
 			echo Reload Script...
-			timeout /t 5 >nul
+			timeout /t 4 >nul
 			start "" "%local%"
 			exit /b
 		) else (
@@ -278,6 +278,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
