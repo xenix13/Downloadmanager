@@ -15,7 +15,7 @@ if %errorLevel% neq 0 (
 :update
 cls
 echo ================================
-echo   		Check Updates ...
+echo   	Check Updates ...
 echo ================================
 echo.
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
@@ -142,7 +142,7 @@ goto menu
 color 1F
 cls
 echo ================================
-echo   			Select Apps
+echo   		Select Apps
 echo ================================
 echo.
 
@@ -260,6 +260,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
