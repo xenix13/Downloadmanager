@@ -50,7 +50,7 @@ echo Check Version...
 
 :: If TEMP File exist try to update
 if exist "%newlocal%" (
-	if not "!localVersion!"=="!remoteVersion!" (
+	if not "!localVersion!" leq "!remoteVersion!" (
 		echo Your Version : !localVersion!
 		set /p choice="A new update !remoteVersion! is available. Do you want to upgrade ? (Y/N) : "
 		if /I "!choice!"=="O" goto upgrade
@@ -278,6 +278,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
