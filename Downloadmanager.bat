@@ -26,6 +26,7 @@ set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/ma
 set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
 set "local=%~f0"
 set "tmpVersion=%temp%\version.tmp"
+set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
 set "localVersion=25.10.3"
@@ -38,7 +39,6 @@ powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '
 ::
 
 :: Set Remote version for Version Checker
-set "remoteVersion="
 set /p remoteVersion=<"%tmpVersion%"
 del "%tmpVersion%"
 
@@ -277,6 +277,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
