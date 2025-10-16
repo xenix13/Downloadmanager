@@ -36,7 +36,7 @@ echo Check Version...
 :: Si téléchargement réussi, demande validation
 if exist "%local%.tmp" (
 	if not "!localVersion!"=="!remoteVersion!" (
-		echo Votre version : !localVersion!
+		echo Your Version : !localVersion!
 		set /p choice="A new update !remoteVersion! is available. Do you want to upgrade ? (Y/N) : "
 		if /I "!choice!"=="O" goto upgrade
 		if /I "!choice!"=="Y" (
@@ -261,6 +261,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
