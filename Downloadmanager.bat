@@ -38,7 +38,9 @@ if exist "%local%.tmp" (
 	if not "!localVersion!"=="!remoteVersion!" (
 		echo Votre version : !localVersion!
 		set /p choice="A new update !remoteVersion! is available. Do you want to upgrade ? (Y/N) : "
-		if /I "!choice!"=="O" | "Y" (
+		if /I "!choice!"=="O" goto upgrade
+		if /I "!choice!"=="Y" (
+			:upgrade
 			move /Y "%local%.tmp" "%local%"
 			echo Upgrade Succesfull !
 			echo Reload Script...
@@ -258,6 +260,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
