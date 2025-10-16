@@ -1,9 +1,12 @@
 @echo off
 setlocal enabledelayedexpansion
 title Select applications to install
+
+:: Change font color
 color 1F
 
-:: ------------------ Auto-élévation ------------------
+:: ------------------ Admin Elevation ------------------
+
 net session >nul 2>&1
 if %errorLevel% neq 0 (
     echo Demande de droits administrateur...
@@ -12,6 +15,7 @@ if %errorLevel% neq 0 (
 )
 
 :: ------------------------ Configuration ------------------------
+
 :update
 cls
 echo ================================
@@ -19,21 +23,31 @@ echo   	Check Updates ...
 echo ================================
 echo.
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
-set "local=%~f0"
-set "localVersion=25.10.3"
-powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
+set "local=%~f0"
 set "tmpVersion=%temp%\version.tmp"
+
+:: Set localVersion and Version.txt to 
+set "localVersion=25.10.3"
+
+:: Downloads Files 
+powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%local%.tmp'"
 powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
+
+::
+::
+
+:: Set Remote version for Version Checker
 set "remoteVersion="
 set /p remoteVersion=<"%tmpVersion%"
 del "%tmpVersion%"
 
 
-:: ------------------------ Téléchargement ------------------------
+:: ------------------------ Version Checker ------------------------
+
 echo Check Version...
 
-:: Si téléchargement réussi, demande validation
+:: If TEMP File exist try to update
 if exist "%local%.tmp" (
 	if not "!localVersion!"=="!remoteVersion!" (
 		echo Your Version : !localVersion!
@@ -62,7 +76,9 @@ if exist "%local%.tmp" (
 	pause
 )
 
-:: ------------------ Initialisation des applications ------------------
+:: ------------------ Init Apps ------------------
+:: To add New apps just copy and past and adjust the name,id and cat on whatever you want
+
 set "total=0"
 
 :: --- Browsers ---
@@ -147,11 +163,11 @@ echo   		Select Apps
 echo ================================
 echo.
 
-:: Colonnes fixes
+:: Columns
 set /a cols=3
 set "colWidth=30"
 
-:: Affichage avec catégories et pas de fantômes
+:: Display category and apps
 set "lastCat="
 set /a colCounter=0
 set "line="
@@ -261,6 +277,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
