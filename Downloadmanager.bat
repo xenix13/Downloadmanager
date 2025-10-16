@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 title Select applications to install
 
 :: Change font color
-color 9F
+color 1F
 
 :: ------------------ Admin Elevation ------------------
 
@@ -157,7 +157,7 @@ set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%to
 goto menu
 
 :menu
-color 9F
+color 1F
 cls
 echo ================================
 echo           Select Apps
@@ -278,6 +278,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
