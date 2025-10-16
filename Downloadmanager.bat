@@ -44,6 +44,7 @@ if exist "%local%.tmp" (
 			move /Y "%local%.tmp" "%local%"
 			echo Upgrade Succesfull !
 			echo Reload Script...
+			pause
 			start "" "%local%"
 			exit /b
 		) else (
@@ -260,6 +261,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
