@@ -171,7 +171,7 @@ echo ================================
 echo.
 
 :: Columns
-set /a cols=3
+set /a cols=4
 set "colWidth=30"
 
 :: Display category and apps
@@ -284,6 +284,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
