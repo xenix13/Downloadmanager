@@ -21,7 +21,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.10.43"
+set "localVersion=25.10.44"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -71,10 +71,10 @@ if exist "%newlocal%" (
 :: ------------------ Init Apps ------------------
 :: To add New apps just copy and past and adjust the name,id and cat on whatever you want
 
-set "total=0"
+set "total=1"
 
 :: --- Browsers ---
-set /a total+=1 & set "app[%total%]=[ ] "       & set "id[%total%]="                & set "cat[%total%]=Browsers"
+::set /a total+=1 & set "app[%total%]=[ ] "       & set "id[%total%]="                & set "cat[%total%]=Browsers"
 set /a total+=1 & set "app[%total%]=[ ] Chrome"       & set "id[%total%]=Google.Chrome"                & set "cat[%total%]=Browsers"
 set /a total+=1 & set "app[%total%]=[ ] Firefox"      & set "id[%total%]=Mozilla.Firefox"              & set "cat[%total%]=Browsers"
 set /a total+=1 & set "app[%total%]=[ ] Opera"        & set "id[%total%]=Opera.Opera"                  & set "cat[%total%]=Browsers"
@@ -133,6 +133,7 @@ set /a total+=1 & set "app[%total%]=[ ] TeamViewer"   & set "id[%total%]=TeamVie
 set /a total+=1 & set "app[%total%]=[ ] AnyDesk"      & set "id[%total%]=AnyDesk.AnyDesk"              & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Termius"      & set "id[%total%]=Termius.Termius"              & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] OpenVPN Connect" & set "id[%total%]=OpenVPNTechnologies.OpenVPNConnect" & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Tailscale" & set "id[%total%]=Tailscale.Tailscale"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Quickshare"   & set "id[%total%]=Quickshare"                   & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Nextcloud Client" & set "id[%total%]=Nextcloud.NextcloudDesktop" & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] KeePassXC"    & set "id[%total%]=KeePassXCTeam.KeePassXC"      & set "cat[%total%]=Tools"
@@ -143,6 +144,8 @@ set /a total+=1 & set "app[%total%]=[ ] Itunes"    & set "id[%total%]=Apple.iTun
 set /a total+=1 & set "app[%total%]=[ ] Driver Store"    & set "id[%total%]=lostindark.DriverStoreExplorer"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] DDU"    & set "id[%total%]=Wagnardsoft.DisplayDriverUninstaller"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Nvidia APP" & set "id[%total%]=Nvidia.GeForceExperience"      & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Onedrive" & set "id[%total%]=Microsoft.OneDrive"      & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Ventoy" & set "id[%total%]=Ventoy.Ventoy"      & set "cat[%total%]=Tools"
 
 :: --- Developpement ---
 set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Developpement"
@@ -152,6 +155,9 @@ set /a total+=1 & set "app[%total%]=[ ] Git"          & set "id[%total%]=Git.Git
 
 :: --- Personnalization ---
 set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%total%]=rocksdanister.LivelyWallpaper"             & set "cat[%total%]=Personnalization"
+set /a total+=1 & set "app[%total%]=[ ] Sucrose Wallpaper"          & set "id[%total%]=Taiizor.SucroseWallpaperEngine"             & set "cat[%total%]=Personnalization"
+set /a total+=1 & set "app[%total%]=[ ] OpenRGB"       & set "id[%total%]=OpenRGB.OpenRGB"                & set "cat[%total%]=Personnalization"
+set /a total+=1 & set "app[%total%]=[ ] SignalRgb"          & set "id[%total%]=WhirlwindFX.SignalRgb"             & set "cat[%total%]=Personnalization"
 
 :: ------------------ Menu ------------------
 goto menu
@@ -206,7 +212,7 @@ echo Step U to uninstall the selected applications.
 echo Step C to check update
 echo Step Q to quit.
 echo.
-set /p choix=Ton choix : 
+set /p choix=Choice : 
 
 if /I "%choix%"=="Q" exit /b
 if /I "%choix%"=="I" goto install
@@ -278,6 +284,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
