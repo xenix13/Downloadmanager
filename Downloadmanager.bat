@@ -7,12 +7,12 @@ color 1F
 
 :: ------------------ Admin Elevation ------------------
 
-net session >nul 2>&1
-if %errorLevel% neq 0 (
-    echo Demande de droits administrateur...
-    powershell -Command "Start-Process '%~f0' -Verb runAs"
-    exit /b
-)
+::net session >nul 2>&1
+::if %errorLevel% neq 0 (
+::    echo Demande de droits administrateur...
+::    powershell -Command "Start-Process '%~f0' -Verb runAs"
+::    exit /b
+::)
 
 :: ------------------------ Configuration ------------------------
 
@@ -278,6 +278,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
