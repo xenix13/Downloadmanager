@@ -5,15 +5,6 @@ title Select applications to install
 :: Change font color
 color 1F
 
-:: ------------------ Admin Elevation ------------------
-
-::net session >nul 2>&1
-::if %errorLevel% neq 0 (
-::    echo Demande de droits administrateur...
-::    powershell -Command "Start-Process '%~f0' -Verb runAs"
-::    exit /b
-::)
-
 :: ------------------------ Configuration ------------------------
 
 :update
@@ -111,11 +102,16 @@ set /a total+=1 & set "app[%total%]=[ ] Deezer"       & set "id[%total%]=Deezer.
 set /a total+=1 & set "app[%total%]=[ ] OBSStudio"    & set "id[%total%]=OBSProject.OBSStudio"         & set "cat[%total%]=Media"
 set /a total+=1 & set "app[%total%]=[ ] Elgato StreamDeck"    & set "id[%total%]=Elgato.StreamDeck"         & set "cat[%total%]=Media"
 
+
 :: --- Documents ---
 set /a total+=1 & set "app[%total%]=[ ] LibreOffice"  & set "id[%total%]=TheDocumentFoundation.LibreOffice" & set "cat[%total%]=Documents"
 set /a total+=1 & set "app[%total%]=[ ] OnlyOffice"   & set "id[%total%]=ONLYOFFICE.DesktopEditors"    & set "cat[%total%]=Documents"
+set /a total+=1 & set "app[%total%]=[ ] Microsoft 365"   & set "id[%total%]=Microsoft.Office"    & set "cat[%total%]=Documents"
 set /a total+=1 & set "app[%total%]=[ ] Okular"   & set "id[%total%]=KDE.Okular"    & set "cat[%total%]=Documents"
 set /a total+=1 & set "app[%total%]=[ ] Adobe Creative Cloud"   & set "id[%total%]=Adobe.CreativeCloud"    & set "cat[%total%]=Documents"
+set /a total+=1 & set "app[%total%]=[ ] Adobe Reader"   & set "id[%total%]=Adobe.Acrobat.Reader.64-bit"    & set "cat[%total%]=Documents"
+set /a total+=1 & set "app[%total%]=[ ] HP Smart"   & set "id[%total%]=9WZDNCRFHWLH"    & set "cat[%total%]=Documents"
+set /a total+=1 & set "app[%total%]=[ ] Scanner Windows"   & set "id[%total%]=9WZDNCRFJ3PV"    & set "cat[%total%]=Documents"
 
 :: --- Games ---
 set /a total+=1 & set "app[%total%]=[ ] Steam"        & set "id[%total%]=Valve.Steam"                  & set "cat[%total%]=Games"
@@ -144,6 +140,8 @@ set /a total+=1 & set "app[%total%]=[ ] Nextcloud Password"    & set "id[%total%
 set /a total+=1 & set "app[%total%]=[ ] Rufus"    & set "id[%total%]=Rufus.Rufus"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Itunes"    & set "id[%total%]=Apple.iTunes"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Driver Store"    & set "id[%total%]=lostindark.DriverStoreExplorer"          & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] DDU"    & set "id[%total%]=Wagnardsoft.DisplayDriverUninstaller"          & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Nvidia APP" & set "id[%total%]=Nvidia.GeForceExperience"      & set "cat[%total%]=Tools"
 
 :: --- Developpement ---
 set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Developpement"
@@ -279,6 +277,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
