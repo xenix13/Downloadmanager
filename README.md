@@ -55,6 +55,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
      * `I` → install selected apps.
      * `U` → uninstall selected apps.
      * `Q` → quit the launcher.
+     * `C` → Check Update.
 
 ---
 
@@ -100,7 +101,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
 
 ## 📌 Example Workflow
 
-1. User runs `launcher.bat`.
+1. User runs `Downloadmanager.bat`.
 2. Script checks GitHub for updates:
 
    * If found → updates itself → relaunches.
@@ -113,7 +114,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
    [ ] 2. Firefox
    ...
    ```
-4. User selects apps → presses `I`.
+4. User selects apps with associate numbers → presses `I`.
 5. `winget` installs the chosen apps automatically.
 6. Confirmation message is shown after completion.
 
@@ -130,8 +131,7 @@ Contributions and improvements are welcome.
 
 To add new apps to the menu:
 
-1. Increment the `total` counter.
-2. Add the app line with name, winget ID, and category:
+. Add the app line with name, winget ID, and category:
 
    ```bat
    set /a total+=1 & set "app[%total%]=[ ] AppName" & set "id[%total%]=Publisher.AppID" & set "cat[%total%]=Category"
