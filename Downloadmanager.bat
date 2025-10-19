@@ -30,7 +30,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.10.41"
+set "localVersion=25.10.42"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -83,6 +83,7 @@ if exist "%newlocal%" (
 set "total=0"
 
 :: --- Browsers ---
+set /a total+=1 & set "app[%total%]=[ ] "       & set "id[%total%]="                & set "cat[%total%]=Browsers"
 set /a total+=1 & set "app[%total%]=[ ] Chrome"       & set "id[%total%]=Google.Chrome"                & set "cat[%total%]=Browsers"
 set /a total+=1 & set "app[%total%]=[ ] Firefox"      & set "id[%total%]=Mozilla.Firefox"              & set "cat[%total%]=Browsers"
 set /a total+=1 & set "app[%total%]=[ ] Opera"        & set "id[%total%]=Opera.Opera"                  & set "cat[%total%]=Browsers"
@@ -278,6 +279,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
