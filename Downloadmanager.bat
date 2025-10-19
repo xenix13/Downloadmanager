@@ -21,7 +21,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.10.42"
+set "localVersion=25.10.43"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -88,6 +88,7 @@ set /a total+=1 & set "app[%total%]=[ ] Teams"        & set "id[%total%]=Microso
 set /a total+=1 & set "app[%total%]=[ ] Discord"      & set "id[%total%]=Discord.Discord"              & set "cat[%total%]=Communications"
 set /a total+=1 & set "app[%total%]=[ ] TeamSpeak"    & set "id[%total%]=TeamSpeakSystems.TeamSpeakClient" & set "cat[%total%]=Communications"
 set /a total+=1 & set "app[%total%]=[ ] Nextcloud Talk" & set "id[%total%]=Nextcloud.Talk"              & set "cat[%total%]=Communications"
+set /a total+=1 & set "app[%total%]=[ ] Whatsapp" & set "id[%total%]=9NKSQGP7F2NH"              & set "cat[%total%]=Communications"
 
 :: --- Mail ---
 set /a total+=1 & set "app[%total%]=[ ] Outlook"      & set "id[%total%]=Microsoft.Outlook"            & set "cat[%total%]=Mail"
@@ -277,6 +278,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
