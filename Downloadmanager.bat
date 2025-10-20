@@ -21,7 +21,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.10.44"
+set "localVersion=25.10.45"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -122,6 +122,8 @@ set /a total+=1 & set "app[%total%]=[ ] EA App"       & set "id[%total%]=Electro
 set /a total+=1 & set "app[%total%]=[ ] NVIDIA GEFORCE NOW" & set "id[%total%]=Nvidia.GeForceNow"       & set "cat[%total%]=Games"
 set /a total+=1 & set "app[%total%]=[ ] FACEIT Client" & set "id[%total%]=FACEITLTD.FACEITClient"      & set "cat[%total%]=Games"
 set /a total+=1 & set "app[%total%]=[ ] Bluestacks" & set "id[%total%]=Bluestack.Bluestacks"      & set "cat[%total%]=Games"
+set /a total+=1 & set "app[%total%]=[ ] Minecraft Launcher" & set "id[%total%]=Mojang.MinecraftLauncher"      & set "cat[%total%]=Games"
+set /a total+=1 & set "app[%total%]=[ ] CurseForge" & set "id[%total%]=Overwolf.CurseForge"      & set "cat[%total%]=Games"
 
 :: --- Compression ---
 set /a total+=1 & set "app[%total%]=[ ] 7-Zip"        & set "id[%total%]=7zip.7zip"                    & set "cat[%total%]=Compression"
@@ -145,6 +147,7 @@ set /a total+=1 & set "app[%total%]=[ ] DDU"    & set "id[%total%]=Wagnardsoft.D
 set /a total+=1 & set "app[%total%]=[ ] Nvidia APP" & set "id[%total%]=Nvidia.GeForceExperience"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Onedrive" & set "id[%total%]=Microsoft.OneDrive"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Ventoy" & set "id[%total%]=Ventoy.Ventoy"      & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] VirtualBox" & set "id[%total%]=Oracle.VirtualBox      & set "cat[%total%]=Tools"
 
 :: --- Developpement ---
 set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Developpement"
@@ -283,6 +286,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
