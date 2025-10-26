@@ -21,7 +21,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.10.45"
+set "localVersion=25.10.46"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -147,19 +147,26 @@ set /a total+=1 & set "app[%total%]=[ ] DDU"    & set "id[%total%]=Wagnardsoft.D
 set /a total+=1 & set "app[%total%]=[ ] Nvidia APP" & set "id[%total%]=Nvidia.GeForceExperience"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Onedrive" & set "id[%total%]=Microsoft.OneDrive"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Ventoy" & set "id[%total%]=Ventoy.Ventoy"      & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] VirtualBox" & set "id[%total%]=Oracle.VirtualBox      & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] VirtualBox" & set "id[%total%]=Oracle.VirtualBox"      & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Sweet Home 3D" & set "id[%total%]=eTeks.SweetHome3D"     & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Copilot" & set "id[%total%]=9NHT9RB2F4HD"     & set "cat[%total%]=Tools"
 
 :: --- Developpement ---
 set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Developpement"
 set /a total+=1 & set "app[%total%]=[ ] WinSCP"       & set "id[%total%]=WinSCP.WinSCP"                & set "cat[%total%]=Developpement"
 set /a total+=1 & set "app[%total%]=[ ] Notepad++"    & set "id[%total%]=Notepad++.Notepad++"          & set "cat[%total%]=Developpement"
 set /a total+=1 & set "app[%total%]=[ ] Git"          & set "id[%total%]=Git.Git"                      & set "cat[%total%]=Developpement"
+set /a total+=1 & set "app[%total%]=[ ] Tera Term"          & set "id[%total%]=TeraTermProject.teraterm5"             & set "cat[%total%]=Developpement"
 
 :: --- Personnalization ---
 set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%total%]=rocksdanister.LivelyWallpaper"             & set "cat[%total%]=Personnalization"
 set /a total+=1 & set "app[%total%]=[ ] Sucrose Wallpaper"          & set "id[%total%]=Taiizor.SucroseWallpaperEngine"             & set "cat[%total%]=Personnalization"
 set /a total+=1 & set "app[%total%]=[ ] OpenRGB"       & set "id[%total%]=OpenRGB.OpenRGB"                & set "cat[%total%]=Personnalization"
 set /a total+=1 & set "app[%total%]=[ ] SignalRgb"          & set "id[%total%]=WhirlwindFX.SignalRgb"             & set "cat[%total%]=Personnalization"
+set /a total+=1 & set "app[%total%]=[ ] ICUE"          & set "id[%total%]=Corsair.iCUE.5"             & set "cat[%total%]=Personnalization"
+set /a total+=1 & set "app[%total%]=[ ] Logitech GHUB"          & set "id[%total%]=Logitech.GHUB"             & set "cat[%total%]=Personnalization"
+set /a total+=1 & set "app[%total%]=[ ] Steelseries Engine"          & set "id[%total%]=SteelSeries.SteelSeriesEngine"             & set "cat[%total%]=Personnalization"
+set /a total+=1 & set "app[%total%]=[ ] Razer Synapse"          & set "id[%total%]=RazerInc.RazerInstaller.Synapse4"             & set "cat[%total%]=Personnalization"
 
 :: ------------------ Menu ------------------
 goto menu
@@ -286,6 +293,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
