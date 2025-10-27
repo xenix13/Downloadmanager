@@ -142,7 +142,8 @@ set /a total+=1 & set "app[%total%]=[ ] Bitwarden"    & set "id[%total%]=Bitward
 set /a total+=1 & set "app[%total%]=[ ] Nextcloud Password"    & set "id[%total%]=9NXVZ0ZP6D5Z"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Rufus"    & set "id[%total%]=Rufus.Rufus"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Itunes"    & set "id[%total%]=Apple.iTunes"          & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] Driver Store"    & set "id[%total%]=lostindark.DriverStoreExplorer"          & set "cat[%total%]=Tools"
+:: powershell -Command "Invoke-WebRequest -Uri 'https://drivers.amd.com/drivers/installer/25.10/whql/amd-software-adrenalin-edition-25.9.1-minimalsetup-250901_web.exe' -OutFile \"$env:USERPROFILE\Desktop\amd-software-adrenalin-edition-25.9.1-minimalsetup-250901_web.exe\""
+::
 set /a total+=1 & set "app[%total%]=[ ] DDU"    & set "id[%total%]=Wagnardsoft.DisplayDriverUninstaller"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Nvidia APP" & set "id[%total%]=Nvidia.GeForceExperience"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Onedrive" & set "id[%total%]=Microsoft.OneDrive"      & set "cat[%total%]=Tools"
@@ -293,6 +294,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
