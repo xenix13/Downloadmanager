@@ -21,7 +21,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.11.20"
+set "localVersion=25.11.21"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -130,9 +130,6 @@ set /a total+=1 & set "app[%total%]=[ ] 7-Zip"        & set "id[%total%]=7zip.7z
 set /a total+=1 & set "app[%total%]=[ ] WinRAR"       & set "id[%total%]=RARLab.WinRAR"                & set "cat[%total%]=Compression"
 
 :: --- Tools ---
-set /a total+=1 & set "app[%total%]=[ ] TeamViewer"   & set "id[%total%]=TeamViewer.TeamViewer"        & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] AnyDesk"      & set "id[%total%]=AnyDesk.AnyDesk"              & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] Termius"      & set "id[%total%]=Termius.Termius"              & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] OpenVPN Connect" & set "id[%total%]=OpenVPNTechnologies.OpenVPNConnect" & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Tailscale" & set "id[%total%]=Tailscale.Tailscale"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Quickshare"   & set "id[%total%]=Quickshare"                   & set "cat[%total%]=Tools"
@@ -140,25 +137,32 @@ set /a total+=1 & set "app[%total%]=[ ] Nextcloud Client" & set "id[%total%]=Nex
 set /a total+=1 & set "app[%total%]=[ ] KeePassXC"    & set "id[%total%]=KeePassXCTeam.KeePassXC"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Bitwarden"    & set "id[%total%]=Bitwarden.Bitwarden"          & set "cat[%total%]=Tools" 
 set /a total+=1 & set "app[%total%]=[ ] Nextcloud Password"    & set "id[%total%]=9NXVZ0ZP6D5Z"          & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] Rufus"    & set "id[%total%]=Rufus.Rufus"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Itunes"    & set "id[%total%]=Apple.iTunes"          & set "cat[%total%]=Tools"
 :: powershell -Command "Invoke-WebRequest -Uri 'https://drivers.amd.com/drivers/installer/25.10/whql/amd-software-adrenalin-edition-25.9.1-minimalsetup-250901_web.exe' -OutFile \"$env:USERPROFILE\Desktop\amd-software-adrenalin-edition-25.9.1-minimalsetup-250901_web.exe\""
 ::
 set /a total+=1 & set "app[%total%]=[ ] DDU"    & set "id[%total%]=Wagnardsoft.DisplayDriverUninstaller"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Onedrive" & set "id[%total%]=Microsoft.OneDrive"      & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] Ventoy" & set "id[%total%]=Ventoy.Ventoy"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] VirtualBox" & set "id[%total%]=Oracle.VirtualBox"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Sweet Home 3D" & set "id[%total%]=eTeks.SweetHome3D"     & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Copilot" & set "id[%total%]=9NHT9RB2F4HD"     & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] Treesize Free"    & set "id[%total%]=JAMSoftware.TreeSize.Free"          & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] Putty"    & set "id[%total%]=PuTTY.PuTTY"          & set "cat[%total%]=Tools"
 
-:: --- Developpement ---
-set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Developpement"
-set /a total+=1 & set "app[%total%]=[ ] WinSCP"       & set "id[%total%]=WinSCP.WinSCP"                & set "cat[%total%]=Developpement"
-set /a total+=1 & set "app[%total%]=[ ] Notepad++"    & set "id[%total%]=Notepad++.Notepad++"          & set "cat[%total%]=Developpement"
-set /a total+=1 & set "app[%total%]=[ ] Git"          & set "id[%total%]=Git.Git"                      & set "cat[%total%]=Developpement"
-set /a total+=1 & set "app[%total%]=[ ] Tera Term"          & set "id[%total%]=TeraTermProject.teraterm5"             & set "cat[%total%]=Developpement"
+:: --- Admin & Dev---
+set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] WinSCP"       & set "id[%total%]=WinSCP.WinSCP"                & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Notepad++"    & set "id[%total%]=Notepad++.Notepad++"          & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Git"          & set "id[%total%]=Git.Git"                      & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Tera Term"          & set "id[%total%]=TeraTermProject.teraterm5"             & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Ventoy" & set "id[%total%]=Ventoy.Ventoy"      & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Advanced IP Scanner"    & set "id[%total%]=Famatech.AdvancedIPScanner"          & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Putty"    & set "id[%total%]=PuTTY.PuTTY"          & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Treesize Free"    & set "id[%total%]=JAMSoftware.TreeSize.Free"          & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Rufus"    & set "id[%total%]=Rufus.Rufus"          & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Termius"      & set "id[%total%]=Termius.Termius"              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Yealink USB Connect"      & set "id[%total%]=Yealink.YealinkUSBConnect"              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] TeamViewer"   & set "id[%total%]=TeamViewer.TeamViewer"        & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] AnyDesk"      & set "id[%total%]=AnyDesk.AnyDesk"              & set "cat[%total%]=Admin & Dev" 
+set /a total+=1 & set "app[%total%]=[ ] 3CX"      & set "id[%total%]=3CX.Softphone"              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Greenshot"      & set "id[%total%]=Greenshot.Greenshot"              & set "cat[%total%]=Admin & Dev"
 
 :: --- Personnalization ---
 set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%total%]=rocksdanister.LivelyWallpaper"             & set "cat[%total%]=Personnalization"
@@ -295,6 +299,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
