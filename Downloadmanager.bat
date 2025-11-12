@@ -151,6 +151,7 @@ set /a total+=1 & set "app[%total%]=[ ] VirtualBox" & set "id[%total%]=Oracle.Vi
 set /a total+=1 & set "app[%total%]=[ ] Sweet Home 3D" & set "id[%total%]=eTeks.SweetHome3D"     & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Copilot" & set "id[%total%]=9NHT9RB2F4HD"     & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Treesize Free"    & set "id[%total%]=JAMSoftware.TreeSize.Free"          & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Putty"    & set "id[%total%]=PuTTY.PuTTY"          & set "cat[%total%]=Tools"
 
 :: --- Developpement ---
 set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Developpement"
@@ -294,6 +295,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
