@@ -21,7 +21,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.11.21b"
+set "localVersion=25.11.22b"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -274,6 +274,16 @@ for /L %%i in (1,1,%total%) do (
             echo.
         )
     )
+
+    rem --- Apps Web (téléchargement via PowerShell) ---
+    if defined appweb[%%i] (
+        echo !appweb[%%i]! | find "[X]" >nul
+        if not errorlevel 1 (
+            echo Téléchargement de !appweb[%%i]!...
+            call !id[%%i]!
+            echo.
+        )
+    )
 )
 echo All installations are complete.
 echo Press any key to return to the menu...
@@ -300,6 +310,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
