@@ -22,7 +22,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.11.23"
+set "localVersion=25.11.24"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -139,13 +139,13 @@ set /a total+=1 & set "app[%total%]=[ ] KeePassXC"    & set "id[%total%]=KeePass
 set /a total+=1 & set "app[%total%]=[ ] Bitwarden"    & set "id[%total%]=Bitwarden.Bitwarden"          & set "cat[%total%]=Tools" 
 set /a total+=1 & set "app[%total%]=[ ] Nextcloud Password"    & set "id[%total%]=9NXVZ0ZP6D5Z"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Itunes"    & set "id[%total%]=Apple.iTunes"          & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] AMD Adrenaline"  & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://drivers.amd.com/drivers/installer/25.10/whql/amd-software-adrenalin-edition-25.9.1-minimalsetup-250901_web.exe' -OutFile \"$env:USERPROFILE\Desktop\amd-software-adrenalin-edition-25.9.1-minimalsetup-250901_web.exe\""  & set "cat[%total%]=Tools"
-::
 set /a total+=1 & set "app[%total%]=[ ] DDU"    & set "id[%total%]=Wagnardsoft.DisplayDriverUninstaller"          & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Onedrive" & set "id[%total%]=Microsoft.OneDrive"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] VirtualBox" & set "id[%total%]=Oracle.VirtualBox"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Sweet Home 3D" & set "id[%total%]=eTeks.SweetHome3D"     & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Copilot" & set "id[%total%]=9NHT9RB2F4HD"     & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] AMD Adrenaline"  & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://drivers.amd.com/drivers/installer/25.20/whql/amd-software-adrenalin-edition-25.10.2-minimalsetup-251027_web.exe' -OutFile \"$env:USERPROFILE\Desktop\AMD_Adrenaline.exe""  & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] NVIDIA App"  & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://uk.download.nvidia.com/nvapp/client/11.0.5.420/NVIDIA_app_v11.0.5.420.exe' -OutFile \"$env:USERPROFILE\Desktop\NVIDIA_App.exe""  & set "cat[%total%]=Tools"
 
 :: --- Admin & Dev---
 set /a total+=1 & set "app[%total%]=[ ] Visual Studio Code" & set "id[%total%]=Microsoft.VisualStudioCode" & set "cat[%total%]=Admin & Dev"
@@ -311,6 +311,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
