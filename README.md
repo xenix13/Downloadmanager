@@ -138,6 +138,12 @@ To add new apps to the menu:
    ```bat
    set /a total+=1 & set "app[%total%]=[ ] AppName" & set "id[%total%]=Publisher.AppID" & set "cat[%total%]=Category"
    ```
+. Or use "IDweb" with url
+
+   ```bat
+   set /a total+=1 & set "app[%total%]=[ ] AppName" & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://url' -OutFile $env:USERPROFILE\Desktop\app.zip"" & set "cat[%total%]=Category"
+   ```
+
 3. The menu numbering and categories update automatically.
 
 This ensures the launcher menu always reflects the latest app list without manual renumbering.
