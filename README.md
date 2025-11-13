@@ -41,10 +41,12 @@ This type of tool can be crucial during deployments to streamline and optimize s
      * A **name** (for display).
      * An **ID** (used by `winget`).
      * A **category**.
+     * An **IDWeb** (used to get package via url)
    * Example entry:
 
      ```bat
      set /a total+=1 & set "app[%total%]=[ ] Chrome" & set "id[%total%]=Google.Chrome" & set "cat[%total%]=Browser"
+     set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender" & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip"" & set "cat[%total%]=Admin & Dev"
      ```
 
 3. **Interaction**
@@ -55,7 +57,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
      * `I` → install selected apps.
      * `U` → uninstall selected apps.
      * `Q` → quit the launcher.
-     * `C` → Check Update.
+     * `C` → Check Script Update.
 
 ---
 
@@ -65,7 +67,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
 2. Double-click the batch file.
 3. On startup:
 
-   * If a new version exists, the script updates itself and restarts.
+   * If a new version exists, the script ask you to update it. If your answer is "Y" the script launch update and restarts.
    * If not, the app menu is displayed directly.
 4. Select apps and choose whether to install or uninstall them.
 
@@ -78,7 +80,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
 * Updates are pulled directly from the **GitHub raw file**:
 
   ```
-  **https://raw.githubusercontent.com/<username>/<repo>/main/launcher.bat**
+  **https://raw.githubusercontent.com/<username>/<repo>/main/Downloadmanager.bat**
   ```
 
 ---
@@ -104,7 +106,7 @@ This type of tool can be crucial during deployments to streamline and optimize s
 1. User runs `Downloadmanager.bat`.
 2. Script checks GitHub for updates:
 
-   * If found → updates itself → relaunches.
+   * If found → Updates → relaunches.
    * If not → continues.
 3. Menu appears:
 
