@@ -14,8 +14,8 @@ echo ================================
 echo        Check Updates ...
 echo ================================
 echo.
-set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Downloadmanager(DEV).bat"
-set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/dev/Version.txt?t=%random%"
+set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
+set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
 set "local=%~f0"
 set "newlocal=%temp%\Downloadmanager.tmp"
 set "tmpVersion=%temp%\version.tmp"
@@ -311,6 +311,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
