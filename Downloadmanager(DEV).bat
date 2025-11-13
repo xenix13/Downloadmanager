@@ -21,7 +21,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.11.22b"
+set "localVersion=25.11.23b"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -163,7 +163,7 @@ set /a total+=1 & set "app[%total%]=[ ] TeamViewer"   & set "id[%total%]=TeamVie
 set /a total+=1 & set "app[%total%]=[ ] AnyDesk"      & set "id[%total%]=AnyDesk.AnyDesk"              & set "cat[%total%]=Admin & Dev" 
 set /a total+=1 & set "app[%total%]=[ ] 3CX"      & set "id[%total%]=3CX.Softphone"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Greenshot"      & set "id[%total%]=Greenshot.Greenshot"              & set "cat[%total%]=Admin & Dev"
-set /a total+=1 & set "appweb[%total%]=[ ] Zywall SecuExtender"      & set "id[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/library/assets/products/secuextender/software/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip""              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/library/assets/products/secuextender/software/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip""              & set "cat[%total%]=Admin & Dev"
 
 :: --- Personnalization ---
 set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%total%]=rocksdanister.LivelyWallpaper"             & set "cat[%total%]=Personnalization"
@@ -266,7 +266,7 @@ echo   	 Install in progress...
 echo ================================
 echo.
 for /L %%i in (1,1,%total%) do (
-    if defined app[%%i] (
+    if defined id[%%i] (
         echo !app[%%i]! | find "[X]" >nul
         if not errorlevel 1 (
             echo Installation de !id[%%i]!...
@@ -276,11 +276,11 @@ for /L %%i in (1,1,%total%) do (
     )
 
     rem --- Apps Web (téléchargement via PowerShell) ---
-    if defined appweb[%%i] (
-        echo !appweb[%%i]! | find "[X]" >nul
+    if defined idweb[%%i] (
+        echo !app[%%i]! | find "[X]" >nul
         if not errorlevel 1 (
-            echo Téléchargement de !appweb[%%i]!...
-            call !id[%%i]!
+            echo Téléchargement de !app[%%i]!...
+            call !idweb[%%i]!
             echo.
         )
     )
@@ -310,6 +310,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
