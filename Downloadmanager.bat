@@ -144,7 +144,6 @@ set /a total+=1 & set "app[%total%]=[ ] Onedrive" & set "id[%total%]=Microsoft.O
 set /a total+=1 & set "app[%total%]=[ ] VirtualBox" & set "id[%total%]=Oracle.VirtualBox"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Sweet Home 3D" & set "id[%total%]=eTeks.SweetHome3D"     & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Copilot" & set "id[%total%]=9NHT9RB2F4HD"     & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] AMD Adrenaline"  & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://drivers.amd.com/drivers/installer/25.20/whql/amd-software-adrenalin-edition-25.10.2-minimalsetup-251027_web.exe' -OutFile \"$env:USERPROFILE\Desktop\AMD_Adrenaline.exe""  & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] NVIDIA App"  & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://uk.download.nvidia.com/nvapp/client/11.0.5.420/NVIDIA_app_v11.0.5.420.exe' -OutFile \"$env:USERPROFILE\Desktop\NVIDIA_App.exe""  & set "cat[%total%]=Tools"
 
 :: --- Admin & Dev---
@@ -311,6 +310,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
