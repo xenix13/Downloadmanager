@@ -22,7 +22,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.11.25"
+set "localVersion=25.11.26"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -162,6 +162,7 @@ set /a total+=1 & set "app[%total%]=[ ] TeamViewer"   & set "id[%total%]=TeamVie
 set /a total+=1 & set "app[%total%]=[ ] AnyDesk"      & set "id[%total%]=AnyDesk.AnyDesk"              & set "cat[%total%]=Admin & Dev" 
 set /a total+=1 & set "app[%total%]=[ ] 3CX"      & set "id[%total%]=3CX.Softphone"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Greenshot"      & set "id[%total%]=Greenshot.Greenshot"              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Synology Assistant"      & set "id[%total%]=Synology.Assistant"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/library/assets/products/secuextender/software/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip""              & set "cat[%total%]=Admin & Dev"
 
 :: --- Personnalization ---
@@ -309,6 +310,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
