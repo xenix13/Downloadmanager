@@ -133,7 +133,7 @@ set /a total+=1 & set "app[%total%]=[ ] WinRAR"       & set "id[%total%]=RARLab.
 :: --- Tools ---
 set /a total+=1 & set "app[%total%]=[ ] OpenVPN Connect" & set "id[%total%]=OpenVPNTechnologies.OpenVPNConnect" & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Tailscale" & set "id[%total%]=Tailscale.Tailscale"      & set "cat[%total%]=Tools"
-set /a total+=1 & set "app[%total%]=[ ] Quickshare"   & set "id[%total%]=Quickshare"                   & set "cat[%total%]=Tools"
+set /a total+=1 & set "app[%total%]=[ ] Quickshare"   & set "id[%total%]=Google.QuickShare"                   & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Nextcloud Client" & set "id[%total%]=Nextcloud.NextcloudDesktop" & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] KeePassXC"    & set "id[%total%]=KeePassXCTeam.KeePassXC"      & set "cat[%total%]=Tools"
 set /a total+=1 & set "app[%total%]=[ ] Bitwarden"    & set "id[%total%]=Bitwarden.Bitwarden"          & set "cat[%total%]=Tools" 
@@ -309,6 +309,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
