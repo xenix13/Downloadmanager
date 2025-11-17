@@ -163,7 +163,7 @@ set /a total+=1 & set "app[%total%]=[ ] AnyDesk"      & set "id[%total%]=AnyDesk
 set /a total+=1 & set "app[%total%]=[ ] 3CX"      & set "id[%total%]=3CX.Softphone"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Greenshot"      & set "id[%total%]=Greenshot.Greenshot"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Synology Assistant"      & set "id[%total%]=Synology.Assistant"              & set "cat[%total%]=Admin & Dev"
-set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/library/assets/products/secuextender/software/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip""              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 7"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/library/assets/products/secuextender/software/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip""              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 4.0.4.0"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://mysupport.zyxel.com/hc/article_attachments/360023425560/SecuExtender_4.0.4.0.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender_4.0.4.0.zip""              & set "cat[%total%]=Admin & Dev"
 
 :: --- Personnalization ---
@@ -311,6 +311,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
