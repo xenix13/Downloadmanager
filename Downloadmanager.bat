@@ -22,7 +22,7 @@ set "tmpVersion=%temp%\version.tmp"
 set "remoteVersion="
 
 :: Set localVersion and Version.txt to 
-set "localVersion=25.11.27"
+set "localVersion=25.12.1"
 
 :: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
@@ -165,6 +165,7 @@ set /a total+=1 & set "app[%total%]=[ ] Greenshot"      & set "id[%total%]=Green
 set /a total+=1 & set "app[%total%]=[ ] Synology Assistant"      & set "id[%total%]=Synology.Assistant"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 7"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/library/assets/products/secuextender/software/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip""              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 4.0.4.0"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://mysupport.zyxel.com/hc/article_attachments/360023425560/SecuExtender_4.0.4.0.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender_4.0.4.0.zip""              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 3.2.4.19"  & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://download.zyxel.com/SecuExtender_VPN_Client/software/SecuExtender%20VPN%20Client_IPSec_SSL_VPN_3.2.4.19(subscription_based).zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender_3.2.4.19.zip""  & set "cat[%total%]=Admin & Dev"
 
 :: --- Personnalization ---
 set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%total%]=rocksdanister.LivelyWallpaper"             & set "cat[%total%]=Personnalization"
@@ -311,6 +312,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
