@@ -164,7 +164,7 @@ set /a total+=1 & set "app[%total%]=[ ] 3CX"      & set "id[%total%]=3CX.Softpho
 set /a total+=1 & set "app[%total%]=[ ] Greenshot"      & set "id[%total%]=Greenshot.Greenshot"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Synology Assistant"      & set "id[%total%]=Synology.Assistant"              & set "cat[%total%]=Admin & Dev"
 set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 7"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://www.zyxel.com/library/assets/products/secuextender/software/SecuExtender_Windows.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender.zip""              & set "cat[%total%]=Admin & Dev"
-set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 4"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://github.com/xenix13/Downloadmanager/raw/refs/heads/apps/SecuExtender%20VPN%20Client_SSL_VPN_Client_4.0.5.0.zip' -OutFile $env:USERPROFILE\Desktop\SecuExtender_4.0.5.zip""              & set "cat[%total%]=Admin & Dev"
+set /a total+=1 & set "app[%total%]=[ ] Zywall SecuExtender 4"      & set "idweb[%total%]=powershell -Command "Invoke-WebRequest -Uri 'https://github.com/xenix13/Downloadmanager/raw/refs/heads/apps/SecuExtenderSetup_4.0.5.0.exe' -OutFile $env:USERPROFILE\Desktop\SecuExtender_4.0.5.exe""              & set "cat[%total%]=Admin & Dev"
 
 :: --- Personnalization ---
 set /a total+=1 & set "app[%total%]=[ ] Lively Wallpaper"          & set "id[%total%]=rocksdanister.LivelyWallpaper"             & set "cat[%total%]=Personnalization"
@@ -311,6 +311,7 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
+
 
 
 
