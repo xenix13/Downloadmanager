@@ -1,7 +1,14 @@
 @echo off
 setlocal enabledelayedexpansion
 title Select applications to install
-color 1F
+color 0B
+
+:: ================= COLORS =================
+set "GREEN=0A"
+set "RED=0C"
+set "YELLOW=0E"
+set "CYAN=0B"
+set "WHITE=1F"
 
 :: ------------------------ MSSTORE DETECTION ------------------------
 set "MSSTORE_OK=0"
@@ -173,13 +180,28 @@ set /a total+=1 & set "app[%total%]=[ ] Razer Synapse"          & set "id[%total
 goto menu
 
 :menu
-color 1F
+color %CYAN%
 cls
 echo ================================
 echo           Select Apps
 echo ================================
 echo.
 
+color %CYAN%
+echo.
+
+if "!MSSTORE_OK!"=="1" (
+    color %GREEN%
+    echo MS Store : OK
+) else (
+    color %RED%
+    echo MS Store : NON DISPONIBLE
+)
+
+color %CYAN%
+echo.
+
+:: CONFIG COLONNES
 set /a cols=4
 set "colWidth=30"
 
@@ -189,10 +211,14 @@ set "line="
 
 for /L %%i in (1,1,%total%) do (
     if defined app[%%i] (
+
+        :: Nouvelle catégorie
         if not "!cat[%%i]!"=="!lastCat!" (
             if defined line echo.!line!
             echo.
+            color %WHITE%
             echo --- !cat[%%i]! ---
+            color %WHITE%
             echo.
             set "line="
             set /a colCounter=0
@@ -216,10 +242,7 @@ for /L %%i in (1,1,%total%) do (
 if defined line echo.!line!
 
 echo.
-echo I = Install
-echo U = Uninstall
-echo C = Check update
-echo Q = Quit
+echo I = Install   U = Uninstall   C = Check update   Q = Quit
 echo.
 
 set /p choix=Choice : 
@@ -229,6 +252,7 @@ if /I "%choix%"=="I" goto install
 if /I "%choix%"=="U" goto uninstall
 if /I "%choix%"=="C" goto update
 
+:: Toggle
 for /L %%i in (1,1,%total%) do (
     if "%choix%"=="%%i" (
         echo !app[%%i]! | find "[X]" >nul
@@ -242,6 +266,7 @@ for /L %%i in (1,1,%total%) do (
 
 goto menu
 
+:: ================= FORMAT =================
 :formatApp
 setlocal EnableDelayedExpansion
 set "num=  %1"
@@ -261,6 +286,7 @@ exit /b %errorlevel%
 :: ------------------ INSTALL ------------------
 :install
 cls
+color %CYAN%
 echo ================================
 echo      Install in progress...
 echo ================================
@@ -268,40 +294,47 @@ echo.
 
 for /L %%i in (1,1,%total%) do (
 
-    :: --- WINGET APPS ---
+    :: WINGET APPS
     if defined id[%%i] (
         echo !app[%%i]! | find "[X]" >nul
         if not errorlevel 1 (
 
-            call :isMsStoreApp !id[%%i]!
-
             echo --------------------------------
             echo [%date% %time%] INSTALL !id[%%i]!
 
+            call :isMsStoreApp !id[%%i]!
+
             if !errorlevel! == 0 (
                 if "!MSSTORE_OK!"=="0" (
+                    color %YELLOW%
                     echo [SKIP] Microsoft Store indisponible
                 ) else (
                     winget install --id=!id[%%i]! -e --source msstore --accept-package-agreements --accept-source-agreements
                     if !errorlevel! neq 0 (
+                        color %RED%
                         echo [ERROR]
                     ) else (
+                        color %GREEN%
                         echo [SUCCESS]
                     )
                 )
             ) else (
                 winget install --id=!id[%%i]! -e --accept-package-agreements --accept-source-agreements
                 if !errorlevel! neq 0 (
+                    color %RED%
                     echo [ERROR]
                 ) else (
+                    color %GREEN%
                     echo [SUCCESS]
                 )
             )
+
+            color %CYAN%
             echo.
         )
     )
 
-    :: --- WEB APPS ---
+    :: WEB APPS
     if defined idweb[%%i] (
         echo !app[%%i]! | find "[X]" >nul
         if not errorlevel 1 (
@@ -312,11 +345,14 @@ for /L %%i in (1,1,%total%) do (
             call !idweb[%%i]!
 
             if !errorlevel! neq 0 (
+                color %RED%
                 echo [ERROR]
             ) else (
+                color %GREEN%
                 echo [SUCCESS]
             )
 
+            color %CYAN%
             echo.
         )
     )
@@ -331,6 +367,7 @@ goto menu
 :: ------------------ UNINSTALL ------------------
 :uninstall
 cls
+color %CYAN%
 echo ================================
 echo     Uninstall in progress...
 echo ================================
@@ -347,15 +384,19 @@ for /L %%i in (1,1,%total%) do (
             winget uninstall --id=!id[%%i]! -e --silent
 
             if !errorlevel! neq 0 (
+                color %RED%
                 echo [ERROR]
             ) else (
+                color %GREEN%
                 echo [SUCCESS]
             )
 
+            color %CYAN%
             echo.
         )
     )
 )
+
 echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
