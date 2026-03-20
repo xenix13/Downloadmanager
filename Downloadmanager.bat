@@ -4,6 +4,7 @@ title Select applications to install
 color 0B
 
 :: ================= COLORS =================
+:color
 set "GREEN=0A"
 set "RED=0C"
 set "YELLOW=0E"
@@ -41,7 +42,7 @@ set "local=%~f0"
 set "newlocal=%temp%\Downloadmanager.tmp"
 set "tmpVersion=%temp%\version.tmp"
 
-set "localVersion=26.03.1"
+set "localVersion=26.03.2"
 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
 powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
@@ -329,7 +330,6 @@ for /L %%i in (1,1,%total%) do (
                 )
             )
 
-            color %CYAN%
             echo.
         )
     )
@@ -352,7 +352,6 @@ for /L %%i in (1,1,%total%) do (
                 echo [SUCCESS]
             )
 
-            color %CYAN%
             echo.
         )
     )
@@ -391,7 +390,6 @@ for /L %%i in (1,1,%total%) do (
                 echo [SUCCESS]
             )
 
-            color %CYAN%
             echo.
         )
     )
