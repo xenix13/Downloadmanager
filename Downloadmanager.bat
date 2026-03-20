@@ -1,10 +1,23 @@
-
 @echo off
 setlocal enabledelayedexpansion
 title Select applications to install
-
-:: Change font color
 color 1F
+
+:: ------------------------ MSSTORE DETECTION ------------------------
+set "MSSTORE_OK=0"
+
+winget source list | find /I "msstore" >nul
+if %errorlevel%==0 (
+    winget search "Microsoft Store" --source msstore >nul 2>&1
+    if !errorlevel! == 0 (
+        set "MSSTORE_OK=1"
+    )
+)
+
+echo ========================================
+echo MSSTORE disponible : !MSSTORE_OK!
+echo ========================================
+timeout /t 1 >nul
 
 :: ------------------------ Configuration ------------------------
 
@@ -14,59 +27,39 @@ echo ================================
 echo        Check Updates ...
 echo ================================
 echo.
+
 set "url=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Downloadmanager.bat"
 set "versionURL=https://raw.githubusercontent.com/xenix13/Downloadmanager/refs/heads/main/Version.txt?t=%random%"
 set "local=%~f0"
 set "newlocal=%temp%\Downloadmanager.tmp"
 set "tmpVersion=%temp%\version.tmp"
-set "remoteVersion="
 
-:: Set localVersion and Version.txt to 
-set "localVersion=25.12.3"
+set "localVersion=26.03.1"
 
-:: Downloads Files 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
 powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
 
-::
-::
-
-:: Set Remote version for Version Checker
 set /p remoteVersion=<"%tmpVersion%"
 del "%tmpVersion%"
 
-
-:: ------------------------ Version Checker ------------------------
-
 echo Check Version...
 
-:: If TEMP File exist try to update
 if exist "%newlocal%" (
-	if not "!localVersion!"=="!remoteVersion!" (
-		echo Your Version : !localVersion!
-		set /p choice="A new update !remoteVersion! is available. Do you want to upgrade ? (Y/N) : "
-		if /I "!choice!"=="O" goto upgrade
-		if /I "!choice!"=="Y" (
-			:upgrade
-			move /Y "%newlocal%" "%local%"
-			echo Upgrade Succesfull !
-			echo Reload Script...
-			timeout /t 4 >nul
-			start "" "%local%"
-			exit /b
-		) else (
-			del "%newlocal%"
-			echo Update ignored, Loading...
-			pause
-		)
-	) else (
-		echo None update is available.
-		del "%newlocal%"
-		pause
-	)
-) else (
-    echo Update failure. Loading script...
-	pause
+    if not "!localVersion!"=="!remoteVersion!" (
+        echo Your Version : !localVersion!
+        set /p choice="Update !remoteVersion! available (Y/N) : "
+        if /I "!choice!"=="Y" (
+            move /Y "%newlocal%" "%local%"
+            echo Update OK - Restart...
+            timeout /t 3 >nul
+            start "" "%local%"
+            exit /b
+        ) else (
+            del "%newlocal%"
+        )
+    ) else (
+        del "%newlocal%"
+    )
 )
 
 :: ------------------ Init Apps ------------------
@@ -187,14 +180,13 @@ echo           Select Apps
 echo ================================
 echo.
 
-:: Columns
 set /a cols=4
 set "colWidth=30"
 
-:: Display category and apps
 set "lastCat="
 set /a colCounter=0
 set "line="
+
 for /L %%i in (1,1,%total%) do (
     if defined app[%%i] (
         if not "!cat[%%i]!"=="!lastCat!" (
@@ -216,19 +208,20 @@ for /L %%i in (1,1,%total%) do (
             set "line="
             set /a colCounter=0
         ) else (
-            set "line=!line! "  :: espace entre colonnes
+            set "line=!line! "
         )
     )
 )
+
 if defined line echo.!line!
 
 echo.
-echo Type the number to check/uncheck.
-echo Step I to install the selected applications.
-echo Step U to uninstall the selected applications.
-echo Step C to check update
-echo Step Q to quit.
+echo I = Install
+echo U = Uninstall
+echo C = Check update
+echo Q = Quit
 echo.
+
 set /p choix=Choice : 
 
 if /I "%choix%"=="Q" exit /b
@@ -236,7 +229,6 @@ if /I "%choix%"=="I" goto install
 if /I "%choix%"=="U" goto uninstall
 if /I "%choix%"=="C" goto update
 
-:: Toggle
 for /L %%i in (1,1,%total%) do (
     if "%choix%"=="%%i" (
         echo !app[%%i]! | find "[X]" >nul
@@ -247,6 +239,7 @@ for /L %%i in (1,1,%total%) do (
         )
     )
 )
+
 goto menu
 
 :formatApp
@@ -260,49 +253,105 @@ set "out=!out:~0,%colWidth%!"
 endlocal & set "%2=%out%"
 exit /b
 
+:: ------------------ DETECT MSSTORE APP ------------------
+:isMsStoreApp
+echo %1 | findstr /R "^[0-9][A-Z0-9]*$" >nul
+exit /b %errorlevel%
+
+:: ------------------ INSTALL ------------------
 :install
 cls
 echo ================================
-echo   	 Install in progress...
+echo      Install in progress...
 echo ================================
 echo.
+
 for /L %%i in (1,1,%total%) do (
+
+    :: --- WINGET APPS ---
     if defined id[%%i] (
         echo !app[%%i]! | find "[X]" >nul
         if not errorlevel 1 (
-            echo Installation de !id[%%i]!...
-            winget install --id=!id[%%i]! -e --accept-package-agreements --accept-source-agreements
+
+            call :isMsStoreApp !id[%%i]!
+
+            echo --------------------------------
+            echo [%date% %time%] INSTALL !id[%%i]!
+
+            if !errorlevel! == 0 (
+                if "!MSSTORE_OK!"=="0" (
+                    echo [SKIP] Microsoft Store indisponible
+                ) else (
+                    winget install --id=!id[%%i]! -e --source msstore --accept-package-agreements --accept-source-agreements
+                    if !errorlevel! neq 0 (
+                        echo [ERROR]
+                    ) else (
+                        echo [SUCCESS]
+                    )
+                )
+            ) else (
+                winget install --id=!id[%%i]! -e --accept-package-agreements --accept-source-agreements
+                if !errorlevel! neq 0 (
+                    echo [ERROR]
+                ) else (
+                    echo [SUCCESS]
+                )
+            )
             echo.
         )
     )
 
-    rem --- Apps Web (téléchargement via PowerShell) ---
+    :: --- WEB APPS ---
     if defined idweb[%%i] (
         echo !app[%%i]! | find "[X]" >nul
         if not errorlevel 1 (
-            echo Téléchargement de !app[%%i]!...
+
+            echo --------------------------------
+            echo [%date% %time%] DOWNLOAD !app[%%i]!
+
             call !idweb[%%i]!
+
+            if !errorlevel! neq 0 (
+                echo [ERROR]
+            ) else (
+                echo [SUCCESS]
+            )
+
             echo.
         )
     )
 )
-echo All installations are complete.
-echo Press any key to return to the menu...
-pause >nul
+
+echo ================================
+echo Installation terminee
+echo ================================
+pause
 goto menu
 
+:: ------------------ UNINSTALL ------------------
 :uninstall
 cls
 echo ================================
-echo   	Uninstall in progress...
+echo     Uninstall in progress...
 echo ================================
 echo.
+
 for /L %%i in (1,1,%total%) do (
-    if defined app[%%i] (
+    if defined id[%%i] (
         echo !app[%%i]! | find "[X]" >nul
         if not errorlevel 1 (
-            echo Desinstallation de !id[%%i]!...
-            winget uninstall --id=!id[%%i]! -e --disable-interactivity --silent
+
+            echo --------------------------------
+            echo [%date% %time%] UNINSTALL !id[%%i]!
+
+            winget uninstall --id=!id[%%i]! -e --silent
+
+            if !errorlevel! neq 0 (
+                echo [ERROR]
+            ) else (
+                echo [SUCCESS]
+            )
+
             echo.
         )
     )
