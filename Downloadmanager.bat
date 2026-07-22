@@ -3,6 +3,7 @@ setlocal enabledelayedexpansion
 title Select applications to install
 color 0B
 
+set "localVersion=26.07.1"
 :: ================= COLORS =================
 :color
 set "GREEN=0A"
@@ -10,6 +11,23 @@ set "RED=0C"
 set "YELLOW=0E"
 set "CYAN=0B"
 set "WHITE=1F"
+
+:: ================= WINGET INITIALIZATION =================
+echo.
+echo ========================================
+echo   Attente et configuration de Winget...
+echo ========================================
+
+:: 1. Attendre que Winget soit disponible (max 100 secondes)
+powershell -NoProfile -Command "$retryCount = 0; while (-not (Get-Command winget -ErrorAction SilentlyContinue) -and $retryCount -lt 20) { Start-Sleep -Seconds 5; $retryCount++ }"
+
+:: 2. Configuration des sources et paramètres Winget
+winget source reset --force >nul 2>&1
+winget source update >nul 2>&1
+winget settings --enable InstallerHashOverride >nul 2>&1
+
+echo Winget est prêt !
+echo.
 
 :: ------------------------ MSSTORE DETECTION ------------------------
 set "MSSTORE_OK=0"
@@ -42,7 +60,6 @@ set "local=%~f0"
 set "newlocal=%temp%\Downloadmanager.tmp"
 set "tmpVersion=%temp%\version.tmp"
 
-set "localVersion=26.03.2"
 
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile '%newlocal%'"
 powershell -NoProfile -Command "Invoke-WebRequest -Uri '%versionUrl%' -OutFile '%tmpVersion%' -UseBasicParsing"
@@ -399,26 +416,3 @@ echo All uninstallations are complete.
 echo Press any key to return to the menu...
 pause >nul
 goto menu
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
